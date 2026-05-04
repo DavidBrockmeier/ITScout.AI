@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ITScout.AI</title>
+<meta name="description" content="Next-generation data loss prevention. In development.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --color-bg:          #07090f;
+  --color-bg-card:     #151b28;
+  --color-border:      #1c2333;
+  --color-text:        #c9d1d9;
+  --color-text-muted:  #8b949e;
+  --color-text-dim:    #7c8593;
+  --color-heading:     #ecf0f5;
+  --color-accent:      #4a8eff;
+  --color-accent-glow: rgba(74, 142, 255, 0.06);
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+
+html {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+header.brand {
+  padding: 32px 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.brand-inner {
+  max-width: 880px;
+  margin: 0 auto;
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-heading);
+  letter-spacing: -0.02em;
+}
+
+.brand-inner span {
+  color: var(--color-accent);
+}
+
+.hero {
+  padding: 100px 24px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-glow {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-accent);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-family: var(--font-body);
+  font-size: clamp(36px, 5.5vw, 56px);
+  font-weight: 700;
+  color: var(--color-heading);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero p {
+  font-size: 18px;
+  color: var(--color-text-muted);
+  max-width: 540px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.hero .status {
+  display: inline-block;
+  margin-top: 32px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-text-dim);
+  letter-spacing: 0.08em;
+  padding: 6px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+}
+
+.hero .status::before {
+  content: '●';
+  color: var(--color-accent);
+  margin-right: 8px;
+}
+
+.founders {
+  padding: 80px 24px;
+  border-top: 1px solid var(--color-border);
+}
+
+.founders-inner {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.founders-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-accent);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.founders-heading {
+  font-size: clamp(24px, 3.5vw, 32px);
+  font-weight: 700;
+  color: var(--color-heading);
+  letter-spacing: -0.02em;
+  margin-bottom: 56px;
+}
+
+.founder {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.founder:last-child {
+  margin-bottom: 0;
+}
+
+.founder-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.founder-bio {
+  flex: 1;
+  min-width: 280px;
+}
+
+.founder-bio h3 {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--color-heading);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.founder-bio .role {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-accent);
+  margin-bottom: 16px;
+}
+
+.founder-bio p {
+  font-size: 16px;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+}
+
+footer {
+  border-top: 1px solid var(--color-border);
+  padding: 32px 24px;
+  text-align: center;
+}
+
+footer p {
+  font-size: 13px;
+  color: var(--color-text-dim);
+}
+
+footer a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--color-accent);
+}
+
+@media (max-width: 600px) {
+  .founder { flex-direction: column; align-items: center; text-align: center; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="brand">
+  <div class="brand-inner">ITScout<span>.AI</span></div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-label">In Development</div>
+      <h1>The next generation of data loss prevention.</h1>
+      <p>AI-powered software for organizations that need to know what's happening on their endpoints — before something goes wrong.</p>
+      <div class="status">Currently in development</div>
+    </div>
+  </section>
+
+  <section class="founders">
+    <div class="founders-inner">
+      <div class="founders-label">Leadership</div>
+      <h2 class="founders-heading">Built by people who've spent careers solving these problems.</h2>
+
+      <div class="founder">
+        <img src="Lucila.webp" alt="Lucila Gonzalez" class="founder-photo">
+        <div class="founder-bio">
+          <h3>Lucila Gonzalez</h3>
+          <div class="role">Founder &amp; CEO</div>
+          <p>Lucila brings 25+ years of risk management, regulatory compliance, and insurance leadership across public agencies, healthcare systems, and multi-state enterprises. Holding a Master of Arts from the University of San Diego and credentialed as ARM, CSRM, and SHRM specialist (California Law and Workplace Investigations), she has managed compliance and safety programs for organizations spanning thousands of employees and seven states — delivering $3.8M in documented cost savings, reducing litigation by 26%, and cutting claim closure times in half. She currently serves as Sr. Risk Manager / HR Specialist for California JPIA, advising 18 public agency members on risk strategy, contract review, and HR compliance. Bilingual in English and Spanish.</p>
+        </div>
+      </div>
+
+      <div class="founder">
+        <img src="David.jpg" alt="David Brockmeier" class="founder-photo">
+        <div class="founder-bio">
+          <h3>David Brockmeier</h3>
+          <div class="role">Chief Architect</div>
+          <p>David has spent 30 years working both sides of the wire — writing production software and running the infrastructure it runs on, often simultaneously. Microsoft-certified since 1996, he began his career in helpdesk and systems administration before moving into web development at Great American Insurance's Remote Scholar startup in the late 1990s, building Java web applications mentored by the former CTO of Cincom Systems. He went on to ASP.NET work at Sheakley, served as IT Director for Eagle Asset Investment Trust (sole IT, $1M budget, reporting to the CEO), and in 2010 founded an independent consultancy serving SMBs across Southern California. His career has spanned ASP.NET 1.1 through modern .NET, Java, C#, PowerShell, and TypeScript on the software side, with concurrent depth in Active Directory, Exchange, M365, Entra ID, Defender, Intune, and Purview on the infrastructure side. The dual perspective is rare and necessary: ITScout's architecture requires deep knowledge of both the systems being observed and the software doing the observing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 ITScout.AI &middot; <a href="mailto:hello@itscout.ai">hello@itscout.ai</a></p>
+</footer>
+
+</body>
+</html>
