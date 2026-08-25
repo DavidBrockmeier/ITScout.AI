@@ -213,6 +213,62 @@ header.brand {
   line-height: 1.65;
 }
 
+.contact {
+  padding: 80px 24px;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.contact-inner {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.contact-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-accent);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.contact-heading {
+  font-size: clamp(24px, 3.5vw, 32px);
+  font-weight: 700;
+  color: var(--color-heading);
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.contact p {
+  font-size: 16px;
+  color: var(--color-text-muted);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+.contact-button {
+  display: inline-block;
+  margin-top: 32px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-bg);
+  background: var(--color-accent);
+  padding: 14px 32px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.contact-button:hover {
+  background: #6ba3ff;
+}
+
 footer {
   border-top: 1px solid var(--color-border);
   padding: 32px 24px;
@@ -279,6 +335,15 @@ footer a:hover {
           <p>David has spent 30 years working both sides of the wire — writing production software and running the infrastructure it runs on, often simultaneously. Microsoft-certified since 1996, he began his career in helpdesk and systems administration before moving into web development at Great American Insurance's Remote Scholar startup in the late 1990s, building Java web applications mentored by the former CTO of Cincom Systems. He went on to ASP.NET work at Sheakley, served as IT Director for Eagle Asset Investment Trust (sole IT, $1M budget, reporting to the CEO), and in 2010 founded an independent consultancy serving SMBs across Southern California. His career has spanned ASP.NET 1.1 through modern .NET, Java, C#, PowerShell, and TypeScript on the software side, with concurrent depth in Active Directory, Exchange, M365, Entra ID, Defender, Intune, and Purview on the infrastructure side. The dual perspective is rare and necessary: ITScout's architecture requires deep knowledge of both the systems being observed and the software doing the observing.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div class="contact-label">Contact</div>
+      <h2 class="contact-heading">Get in touch.</h2>
+      <p>Interested in what we're building, or want to talk about endpoint visibility for your organization? We'd love to hear from you.</p>
+      <a class="contact-button" href="mailto:hello@itscout.ai?subject=ITScout.AI%20inquiry">hello@itscout.ai</a>
     </div>
   </section>
 
