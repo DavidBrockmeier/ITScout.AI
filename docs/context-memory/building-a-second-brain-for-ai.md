@@ -58,7 +58,9 @@ Here's the sequence we walked through, condensed into six steps.
 
 1. **Create the vault and its folder structure.** Start with a plain folder, initialize it as (or nest it inside) a git repo, and lay out top-level folders for architecture, decisions, runbooks, and environment-specific notes. Structure matters more than tooling here — see the sample layout below.
 
-2. **Install and enable the Local REST API plugin.** Inside Obsidian: Settings → Community plugins → Browse, search for "Local REST API," install it, then turn it on under Settings → Local REST API. It generates an API key you'll use in the next steps — treat it like a secret, since it grants full read/write access to the vault. > **[Image 5 — screenshot (caption-only in source capture)]** The Local REST API plugin's settings toggle inside Obsidian. Caption: "One toggle turns the vault into an API both agents can call."
+2. **Install and enable the Local REST API plugin.** Inside Obsidian: Settings → Community plugins → Browse, search for "Local REST API," install it, then turn it on under Settings → Local REST API. It generates an API key you'll use in the next steps — treat it like a secret, since it grants full read/write access to the vault.
+
+   > **[Image 5 — screenshot (caption-only in source capture)]** The Local REST API plugin's settings toggle inside Obsidian. Caption: "One toggle turns the vault into an API both agents can call."
 
 3. **Register an MCP server against that API.** Run one of the community MCP bridges (`mcp-obsidian` or `obsidian-mcp-server` are the two most widely used) pointed at the REST API's local endpoint and key. This is the translation layer: it turns MCP tool calls from any agent into HTTP calls against your vault.
 
