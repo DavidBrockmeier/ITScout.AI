@@ -13,7 +13,12 @@ type: reference-article
 
 > How engineering teams can connect Obsidian, Claude, Codex, and MCP to create a persistent AI memory that improves onboarding, documentation, and developer productivity.
 
-![Hero infographic: "One shared vault. Every agent. Every teammate." — Claude (reasoning & conversational AI), Codex (code generation & automation), Obsidian (knowledge graph & linking), and specialized AI agents all wired to a central Obsidian vault. Benefit tiles: one knowledge base for multiple AI agents, single source of truth, faster onboarding & less rework, lower token usage & better efficiency, daily/weekly change summaries, shared organizational memory.](second-brain-hero-infographic.png)
+> **[Image 1 — hero infographic, described in full]**
+> Dark purple/black promotional graphic. Left side, large stacked title text: "BUILDING A **SECOND BRAIN** FOR AI" with the subtitle badge "OBSIDIAN + MULTI-AGENT WORKFLOWS" and the tagline "One shared vault. Every agent. Every teammate." Below that, a laptop mockup showing an Obsidian graph view next to a checklist of vault content types: Architecture, ADRs, Runbooks, APIs, Business Knowledge.
+> Center: a glowing 3D vault/safe labeled "OBSIDIAN VAULT" with a purple Obsidian-crystal logo on its door, and a neural-network brain hovering above it, streaming data down into the vault.
+> Around the vault, four nodes connected to it by dotted lines: **CLAUDE** (orange "C" icon) — "Reasoning & Conversational AI"; **CODEX** (blue `</>` icon) — "Code Generation & Automation"; **OBSIDIAN** (purple crystal icon) — "Knowledge Graph & Linking"; **AI AGENTS** (orange robot icon) — "Specialized Agents & Automations".
+> Bottom row, six benefit tiles with icons: "One Knowledge Base, Multiple AI Agents" · "Single Source of Truth for Your Team" · "Faster Onboarding & Less Rework" · "Lower Token Usage & Better Efficiency" · "Daily/Weekly Change Summaries" · "Shared Organizational Memory".
+> *(Original raster also saved alongside this note as `second-brain-hero-infographic.png` — not required to understand the article.)*
 
 Every AI conversation starts from zero. Open a new chat with Claude or Codex and you re-explain the architecture, paste in the same contract definitions, describe the same folder conventions — and by the time the agent is actually useful, you've burned half the context window on things it should already know.
 
@@ -31,7 +36,7 @@ The problem is that these two tools have no shared memory by default. Ask Claude
 
 An Obsidian vault fixes this by sitting in the middle, as a plain folder of `.md` files that both tools connect to over the **Model Context Protocol (MCP)**. Claude reads the architecture notes and ADRs before it proposes a design. Codex reads the same notes before it touches code. Whichever tool finishes a piece of work writes the outcome back into the vault, so the next agent — or the next teammate — picks up exactly where it left off.
 
-*[Figure: agent comparison diagram — "Different strengths, same memory. Switching agents costs nothing because the truth lives outside the chat window."]*
+> **[Image 2 — diagram (caption-only in source capture)]** Comparison of the two agents' roles around the shared vault. Caption: "Different strengths, same memory. Switching agents costs nothing because the truth lives outside the chat window." Shows Claude (design/architecture/docs) and Codex CLI (in-repo edits/refactors/tests) both connected to the same Obsidian vault as their common memory.
 
 ## Why Obsidian is the right shared memory for AI agents
 
@@ -43,9 +48,9 @@ It's also equally readable by humans and by machines. A new hire can open the va
 
 And it has a mature MCP ecosystem already. Community projects — most commonly the **Obsidian Local REST API plugin** paired with an MCP bridge such as `mcp-obsidian` or `obsidian-mcp-server` — expose the vault as a set of MCP tools: search, read, create, and update notes, walk backlinks, and query tags. Both Claude and Codex can speak MCP natively, so once the bridge is up, adding a second or third agent is just another config entry, not a new integration.
 
-*[Figure: "Obsidian's graph view turns linked notes into a traversable map."]* A note here isn't just a search result — it's a node with edges. An agent, or a teammate, can jump from a system overview to the ADR that drove it, to the runbook that implements it, without a separate search each time.
+> **[Image 3 — screenshot (caption-only in source capture)]** Obsidian's graph view: notes rendered as connected nodes. Caption: "Obsidian's graph view turns linked notes into a traversable map." A note here isn't just a search result — it's a node with edges. An agent, or a teammate, can jump from a system overview to the ADR that drove it, to the runbook that implements it, without a separate search each time.
 
-*[Figure: "Obsidian's quick switcher searches the same index an MCP bridge queries."]* That search index is doing double duty: the same lookup an engineer triggers with a keyboard shortcut is what the MCP bridge queries when an agent asks "what do we know about ADR-0012."
+> **[Image 4 — screenshot (caption-only in source capture)]** Obsidian's quick-switcher search dialog. Caption: "Obsidian's quick switcher searches the same index an MCP bridge queries." That search index is doing double duty: the same lookup an engineer triggers with a keyboard shortcut is what the MCP bridge queries when an agent asks "what do we know about ADR-0012."
 
 ## Setting it up: from empty vault to two connected agents
 
@@ -53,7 +58,7 @@ Here's the sequence we walked through, condensed into six steps.
 
 1. **Create the vault and its folder structure.** Start with a plain folder, initialize it as (or nest it inside) a git repo, and lay out top-level folders for architecture, decisions, runbooks, and environment-specific notes. Structure matters more than tooling here — see the sample layout below.
 
-2. **Install and enable the Local REST API plugin.** Inside Obsidian: Settings → Community plugins → Browse, search for "Local REST API," install it, then turn it on under Settings → Local REST API. It generates an API key you'll use in the next steps — treat it like a secret, since it grants full read/write access to the vault. *[Figure: "One toggle turns the vault into an API both agents can call."]*
+2. **Install and enable the Local REST API plugin.** Inside Obsidian: Settings → Community plugins → Browse, search for "Local REST API," install it, then turn it on under Settings → Local REST API. It generates an API key you'll use in the next steps — treat it like a secret, since it grants full read/write access to the vault. > **[Image 5 — screenshot (caption-only in source capture)]** The Local REST API plugin's settings toggle inside Obsidian. Caption: "One toggle turns the vault into an API both agents can call."
 
 3. **Register an MCP server against that API.** Run one of the community MCP bridges (`mcp-obsidian` or `obsidian-mcp-server` are the two most widely used) pointed at the REST API's local endpoint and key. This is the translation layer: it turns MCP tool calls from any agent into HTTP calls against your vault.
 
@@ -69,13 +74,13 @@ One honest caveat worth flagging before you wire this up on a real project: an M
 
 For an integration-heavy stack — think WPS-UAE file processing, PPC validation, remittance routing, the kind of environment-sensitive logic that behaves differently in dev versus prod — the vault's folder structure is what keeps agents from mixing up environments. A `05-environments/` folder with `dev/`, `qa/`, `uat/`, and `prod/` subfolders, each holding its own endpoints, feature flags, and rollback notes, means an agent working a UAT defect never accidentally applies a prod runbook, and vice versa.
 
-*[Figure: "Sample vault layout for an integration team."]*
+> **[Image 6 — figure (caption-only in source capture)]** Sample vault folder tree for an integration team. Caption: "Sample vault layout for an integration team." Per the surrounding text, top-level folders cover architecture, decisions (ADRs), runbooks, and a `05-environments/` folder with `dev/`, `qa/`, `uat/`, `prod/` subfolders, each holding its own endpoints, feature flags, and rollback notes.
 
 The same pattern extends cleanly: add a folder per microservice, per client integration, or per regulatory scheme, and the vault scales with the system instead of turning into a single unmanageable wiki page.
 
 Here's what one of those notes actually looks like in the editor — plain markdown, a frontmatter block for status and tags, and `[[wikilinks]]` connecting it to the notes it depends on:
 
-*[Figure: "A note in Obsidian's editor, with linked mentions in the sidebar."]*
+> **[Image 7 — screenshot (caption-only in source capture)]** A vault note open in Obsidian's editor: plain markdown with a frontmatter block (status, tags) and [[wikilinks]], linked mentions shown in the sidebar. Caption: "A note in Obsidian's editor, with linked mentions in the sidebar."
 
 ## Scaling from one engineer to a whole team with Git
 
@@ -88,7 +93,7 @@ Because the vault is just a folder of markdown files, it lives in a git repo lik
 3. Engineer B pulls the latest vault before starting their next task. Their Codex CLI session now reads Engineer A's runbook automatically — no meeting, no Slack message, no re-explaining what happened.
 4. Engineer B's agent makes further changes, commits, and pushes back. Engineer C reviews the change as a normal pull request before it's merged. The cycle repeats.
 
-*[Figure: "One team, one vault, every agent."]*
+> **[Image 8 — diagram (caption-only in source capture)]** Team-scale diagram. Caption: "One team, one vault, every agent." Depicts multiple engineers' Claude/Codex sessions all reading and writing one git-backed vault through the shared remote.
 
 Every AI agent on the team — regardless of which engineer is driving it — reads the same `.md` files and writes back to the same shared history. Pull requests on the vault work exactly like pull requests on code: a teammate can review an ADR an agent proposed before the team treats it as ground truth.
 
@@ -121,4 +126,4 @@ If your team is already running more than one AI coding tool, this is a low-cost
 
 ---
 
-*Note on capture: extracted from a Safari-exported PDF of the Medium article. The hero infographic was recovered from the PDF; the six inline figures (marked above) were not embedded in the export — Medium lazy-loads images, and only their captions survived. Fetch from the live article to restore them.*
+*Note on capture: extracted from a Safari-exported PDF of the Medium article. The hero infographic was recovered from the PDF; Images 2–8 were not embedded in the export — Medium lazy-loads images, and only their captions survived; their descriptions above are reconstructed from captions and surrounding text. Image 1's description was written from the actual recovered image.*
